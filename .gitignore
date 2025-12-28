@@ -1,0 +1,5 @@
+# Large video files
+videos/splash.mov
+
+# macOS
+.DS_Store
