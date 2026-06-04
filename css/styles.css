@@ -62,8 +62,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px 20px; /* row-gap column-gap */
-    max-width: 1400px;
-    margin: 50px auto 0 auto;
+    margin-top: 50px;
 }
 
 .grid-item {
@@ -111,8 +110,6 @@ body {
     padding: 30px 0 2px 0;
     background-color: #fff;
     z-index: 100;
-    max-width: 1400px;
-    margin: 0 auto 0 auto;
     width: 100%;
     box-sizing: border-box;
     border-bottom: 0.5px solid #000;
@@ -246,8 +243,7 @@ body {
 }
 
 .project-content {
-    max-width: 1400px;
-    margin: 50px auto 0 auto;
+    margin-top: 50px;
 }
 
 .project-video {
@@ -264,8 +260,6 @@ body {
 }
 
 .project-credits {
-    max-width: 1400px;
-    margin: 0 auto;
 }
 
 .project-credits-title {
