@@ -55,7 +55,7 @@ body {
 /* Work Page Styles */
 .work-page {
     min-height: 100vh;
-    padding: 0 40px 40px 40px;
+    padding: 0 clamp(20px, 5vw, 80px) 40px;
 }
 
 .video-grid {
@@ -171,7 +171,7 @@ body {
 /* Contact Page Styles */
 .contact-page {
     min-height: 100vh;
-    padding: 0 40px 40px 40px;
+    padding: 0 clamp(20px, 5vw, 80px) 40px;
 }
 
 .contact-content {
@@ -242,7 +242,7 @@ body {
 /* Project Page Styles */
 .project-page {
     min-height: 100vh;
-    padding: 0 40px 40px 40px;
+    padding: 0 clamp(20px, 5vw, 80px) 40px;
 }
 
 .project-content {
@@ -350,19 +350,6 @@ body {
     .video-grid {
         grid-template-columns: 1fr;
         gap: 15px;
-    }
-
-    .work-page {
-        padding: 20px;
-        padding-bottom: 100px;
-    }
-
-    .contact-page {
-        padding: 20px;
-    }
-
-    .project-page {
-        padding: 20px;
     }
 
     .footer {
