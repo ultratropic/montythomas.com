@@ -103,6 +103,11 @@
             display: none;
         }
 
+        /* In the 2x2 view the video moves to the last slot (position 4) */
+        .tile-grid.cols-2 .tile-video {
+            order: 4;
+        }
+
         .tile {
             position: relative;
             aspect-ratio: 16 / 9;
@@ -151,6 +156,7 @@
                 grid-template-columns: 1fr;
             }
             .tile-grid.cols-2 .tile:nth-child(n+5) { display: block; }
+            .tile-grid.cols-2 .tile-video { order: 0; }
             .grid-controls { display: none; }
         }
     </style>
@@ -190,13 +196,13 @@
         </div>
 
         <div class="tile-grid" id="tile-grid">
-            <div class="tile">
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-01.jpg" alt="" loading="lazy"></div>
+            <div class="tile tile-video">
                 <video autoplay muted loop playsinline webkit-playsinline preload="metadata"
                     poster="projects/steve_madden-madden_nyc/sm-nyc-30-poster.jpg">
                     <source src="projects/steve_madden-madden_nyc/sm-nyc-30.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-01.jpg" alt="" loading="lazy"></div>
             <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-02.jpg" alt="" loading="lazy"></div>
             <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-03.jpg" alt="" loading="lazy"></div>
             <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-04.jpg" alt="" loading="lazy"></div>
@@ -204,7 +210,7 @@
         </div>
 
         <div class="project-caption">
-            <span class="title">Walmart x Steve Madden</span><span class="meta">, 2025</span>
+            <span class="title">Walmart x Steve Madden</span>
         </div>
     </section>
 
