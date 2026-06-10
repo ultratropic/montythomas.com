@@ -88,17 +88,19 @@
         .grid-toggle button:hover { opacity: 0.6; }
         .grid-toggle button.active { opacity: 1; }
 
-        /* Tile grid */
+        /* Tile grid: 6 tiles at 3x2, or 4 tiles at 2x2 */
         .tile-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
-            transition: gap 0.2s ease;
         }
 
-        .tile-grid.cols-4 {
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+        .tile-grid.cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .tile-grid.cols-2 .tile:nth-child(n+5) {
+            display: none;
         }
 
         .tile {
@@ -133,8 +135,7 @@
         }
 
         @media (max-width: 900px) {
-            .tile-grid,
-            .tile-grid.cols-4 {
+            .tile-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -146,9 +147,10 @@
 
         @media (max-width: 560px) {
             .tile-grid,
-            .tile-grid.cols-4 {
+            .tile-grid.cols-2 {
                 grid-template-columns: 1fr;
             }
+            .tile-grid.cols-2 .tile:nth-child(n+5) { display: block; }
             .grid-controls { display: none; }
         }
     </style>
@@ -166,7 +168,7 @@
     <section class="project-block">
         <div class="grid-controls">
             <div class="grid-toggle">
-                <button type="button" id="btn-cols-3" class="active" aria-label="3 columns" title="Larger tiles">
+                <button type="button" id="btn-grid-4" aria-label="4 tiles, 2 by 2" title="4 tiles">
                     <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
                         <rect x="0" y="0" width="6.5" height="6.5" fill="currentColor"/>
                         <rect x="8.5" y="0" width="6.5" height="6.5" fill="currentColor"/>
@@ -174,17 +176,14 @@
                         <rect x="8.5" y="8.5" width="6.5" height="6.5" fill="currentColor"/>
                     </svg>
                 </button>
-                <button type="button" id="btn-cols-4" aria-label="4 columns" title="Smaller tiles">
-                    <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0" y="0" width="4" height="4" fill="currentColor"/>
-                        <rect x="5.5" y="0" width="4" height="4" fill="currentColor"/>
-                        <rect x="11" y="0" width="4" height="4" fill="currentColor"/>
-                        <rect x="0" y="5.5" width="4" height="4" fill="currentColor"/>
-                        <rect x="5.5" y="5.5" width="4" height="4" fill="currentColor"/>
-                        <rect x="11" y="5.5" width="4" height="4" fill="currentColor"/>
-                        <rect x="0" y="11" width="4" height="4" fill="currentColor"/>
-                        <rect x="5.5" y="11" width="4" height="4" fill="currentColor"/>
-                        <rect x="11" y="11" width="4" height="4" fill="currentColor"/>
+                <button type="button" id="btn-grid-6" class="active" aria-label="6 tiles, 3 by 2" title="6 tiles">
+                    <svg width="23" height="15" viewBox="0 0 23 15" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0" y="0" width="6.5" height="6.5" fill="currentColor"/>
+                        <rect x="8.5" y="0" width="6.5" height="6.5" fill="currentColor"/>
+                        <rect x="17" y="0" width="6.5" height="6.5" fill="currentColor"/>
+                        <rect x="0" y="8.5" width="6.5" height="6.5" fill="currentColor"/>
+                        <rect x="8.5" y="8.5" width="6.5" height="6.5" fill="currentColor"/>
+                        <rect x="17" y="8.5" width="6.5" height="6.5" fill="currentColor"/>
                     </svg>
                 </button>
             </div>
@@ -198,15 +197,9 @@
                 </video>
             </div>
             <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-01.jpg" alt="" loading="lazy"></div>
-            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-02.jpg" alt="" loading="lazy"></div>
-            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-03.jpg" alt="" loading="lazy"></div>
             <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-04.jpg" alt="" loading="lazy"></div>
-            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-05.jpg" alt="" loading="lazy"></div>
-            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-06.jpg" alt="" loading="lazy"></div>
             <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-07.jpg" alt="" loading="lazy"></div>
-            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-08.jpg" alt="" loading="lazy"></div>
             <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-09.jpg" alt="" loading="lazy"></div>
-            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-10.jpg" alt="" loading="lazy"></div>
             <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-11.jpg" alt="" loading="lazy"></div>
         </div>
 
@@ -229,21 +222,21 @@
         tick();
         setInterval(tick, 1000);
 
-        // Grid column toggle
+        // Grid toggle: 4 tiles (2x2) vs 6 tiles (3x2)
         const grid = document.getElementById('tile-grid');
-        const btn3 = document.getElementById('btn-cols-3');
-        const btn4 = document.getElementById('btn-cols-4');
-
-        btn3.addEventListener('click', () => {
-            grid.classList.remove('cols-4');
-            btn3.classList.add('active');
-            btn4.classList.remove('active');
-        });
+        const btn4 = document.getElementById('btn-grid-4');
+        const btn6 = document.getElementById('btn-grid-6');
 
         btn4.addEventListener('click', () => {
-            grid.classList.add('cols-4');
+            grid.classList.add('cols-2');
             btn4.classList.add('active');
-            btn3.classList.remove('active');
+            btn6.classList.remove('active');
+        });
+
+        btn6.addEventListener('click', () => {
+            grid.classList.remove('cols-2');
+            btn6.classList.add('active');
+            btn4.classList.remove('active');
         });
     </script>
 </body>
