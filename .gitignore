@@ -3,3 +3,9 @@ videos/splash.mov
 
 # macOS
 .DS_Store
+
+# High-res source files (dropped here for compression, not deployed)
+_masters/
+
+# Local tooling
+.claude/

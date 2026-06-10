@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Monty Thomas | DP, Editor, Colorist</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='Helvetica' font-weight='300'%3EM%3C/text%3E%3C/svg%3E">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #fff;
+            color: #000;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .v2-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 14px clamp(16px, 1.5vw, 28px);
+            font-size: 13px;
+        }
+
+        .v2-logo {
+            text-decoration: none;
+            color: #000;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            justify-self: start;
+        }
+
+        .v2-clock {
+            justify-self: center;
+            font-size: 13px;
+            font-weight: 400;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .v2-nav {
+            justify-self: end;
+            display: flex;
+            gap: clamp(24px, 4vw, 64px);
+        }
+
+        .v2-nav a {
+            text-decoration: none;
+            color: #000;
+            font-size: 13px;
+        }
+
+        .v2-nav a:hover { opacity: 0.5; }
+
+        /* Project block */
+        .project-block {
+            padding: 6px clamp(16px, 1.5vw, 28px) 60px;
+        }
+
+        /* Controls row above grid */
+        .grid-controls {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 4px 0 8px;
+        }
+
+        .grid-toggle {
+            display: flex;
+            gap: 10px;
+        }
+
+        .grid-toggle button {
+            appearance: none;
+            background: none;
+            border: none;
+            padding: 2px;
+            cursor: pointer;
+            line-height: 0;
+            opacity: 0.25;
+            transition: opacity 0.2s ease;
+        }
+
+        .grid-toggle button:hover { opacity: 0.6; }
+        .grid-toggle button.active { opacity: 1; }
+
+        /* Tile grid */
+        .tile-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            transition: gap 0.2s ease;
+        }
+
+        .tile-grid.cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .tile {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #f2f2f2;
+        }
+
+        .tile img,
+        .tile video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Title below grid, lower left */
+        .project-caption {
+            padding-top: 14px;
+            font-size: 14px;
+        }
+
+        .project-caption .title {
+            color: #000;
+            font-weight: 500;
+        }
+
+        .project-caption .meta {
+            color: #999;
+            font-weight: 400;
+        }
+
+        @media (max-width: 900px) {
+            .tile-grid,
+            .tile-grid.cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .v2-clock { display: none; }
+            .v2-header { grid-template-columns: 1fr auto; }
+        }
+
+        @media (max-width: 560px) {
+            .tile-grid,
+            .tile-grid.cols-4 {
+                grid-template-columns: 1fr;
+            }
+            .grid-controls { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header class="v2-header">
+        <a href="v2.html" class="v2-logo">Monty Thomas</a>
+        <div class="v2-clock" id="clock"></div>
+        <nav class="v2-nav">
+            <a href="work.html">Work</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="project-block">
+        <div class="grid-controls">
+            <div class="grid-toggle">
+                <button type="button" id="btn-cols-3" class="active" aria-label="3 columns" title="Larger tiles">
+                    <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0" y="0" width="6.5" height="6.5" fill="currentColor"/>
+                        <rect x="8.5" y="0" width="6.5" height="6.5" fill="currentColor"/>
+                        <rect x="0" y="8.5" width="6.5" height="6.5" fill="currentColor"/>
+                        <rect x="8.5" y="8.5" width="6.5" height="6.5" fill="currentColor"/>
+                    </svg>
+                </button>
+                <button type="button" id="btn-cols-4" aria-label="4 columns" title="Smaller tiles">
+                    <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0" y="0" width="4" height="4" fill="currentColor"/>
+                        <rect x="5.5" y="0" width="4" height="4" fill="currentColor"/>
+                        <rect x="11" y="0" width="4" height="4" fill="currentColor"/>
+                        <rect x="0" y="5.5" width="4" height="4" fill="currentColor"/>
+                        <rect x="5.5" y="5.5" width="4" height="4" fill="currentColor"/>
+                        <rect x="11" y="5.5" width="4" height="4" fill="currentColor"/>
+                        <rect x="0" y="11" width="4" height="4" fill="currentColor"/>
+                        <rect x="5.5" y="11" width="4" height="4" fill="currentColor"/>
+                        <rect x="11" y="11" width="4" height="4" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="tile-grid" id="tile-grid">
+            <div class="tile">
+                <video autoplay muted loop playsinline webkit-playsinline preload="metadata"
+                    poster="projects/steve_madden-madden_nyc/sm-nyc-30-poster.jpg">
+                    <source src="projects/steve_madden-madden_nyc/sm-nyc-30.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-01.jpg" alt="" loading="lazy"></div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-02.jpg" alt="" loading="lazy"></div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-03.jpg" alt="" loading="lazy"></div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-04.jpg" alt="" loading="lazy"></div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-05.jpg" alt="" loading="lazy"></div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-06.jpg" alt="" loading="lazy"></div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-07.jpg" alt="" loading="lazy"></div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-08.jpg" alt="" loading="lazy"></div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-09.jpg" alt="" loading="lazy"></div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-10.jpg" alt="" loading="lazy"></div>
+            <div class="tile"><img src="projects/steve_madden-madden_nyc/stills/still-11.jpg" alt="" loading="lazy"></div>
+        </div>
+
+        <div class="project-caption">
+            <span class="title">Walmart x Steve Madden</span><span class="meta">, 2025</span>
+        </div>
+    </section>
+
+    <script>
+        // Live NYC clock
+        const clockEl = document.getElementById('clock');
+        function tick() {
+            const t = new Date().toLocaleTimeString('en-US', {
+                timeZone: 'America/New_York',
+                hour12: false,
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            });
+            clockEl.textContent = t + ' Currently in NY';
+        }
+        tick();
+        setInterval(tick, 1000);
+
+        // Grid column toggle
+        const grid = document.getElementById('tile-grid');
+        const btn3 = document.getElementById('btn-cols-3');
+        const btn4 = document.getElementById('btn-cols-4');
+
+        btn3.addEventListener('click', () => {
+            grid.classList.remove('cols-4');
+            btn3.classList.add('active');
+            btn4.classList.remove('active');
+        });
+
+        btn4.addEventListener('click', () => {
+            grid.classList.add('cols-4');
+            btn4.classList.add('active');
+            btn3.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
