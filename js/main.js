@@ -73,8 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Project page hero video: if autoplay is blocked, keep the poster visible
-    // (so the user sees the still rather than nothing). Browser will show its
-    // own play button because the controls attribute is set.
+    // (so the user sees the still rather than nothing).
     const heroVideo = document.querySelector('.project-video video');
     if (heroVideo) {
         heroVideo.play().catch(() => {});
