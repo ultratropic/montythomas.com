@@ -280,6 +280,29 @@ body {
     margin: 0;
 }
 
+.project-next {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #000;
+    text-decoration: none;
+}
+
+.project-next-arrow {
+    transition: transform 0.3s ease;
+}
+
+.project-next:hover .project-next-arrow {
+    transform: translateX(6px);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .video-grid {
