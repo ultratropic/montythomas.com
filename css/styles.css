@@ -251,12 +251,17 @@ body {
 
 .project-video {
     position: relative;
-    width: 100%;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+    max-height: calc(100vh - 170px);
+    margin: 0 auto 30px;
 }
 
 .project-video video {
-    width: 100%;
+    max-width: 100%;
+    max-height: calc(100vh - 170px);
+    width: auto;
     height: auto;
     display: block;
     border: none;
@@ -284,18 +289,33 @@ body {
     margin: 0;
 }
 
+.credit-value {
+    font-weight: 300;
+}
+
 .project-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
     line-height: 1;
-    font-size: 32px;
-    font-weight: 300;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     color: #fff;
     text-decoration: none;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     z-index: 10;
     transition: transform 0.3s ease;
+}
+
+.project-nav-arrow {
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1;
 }
 
 .project-nav-prev {
