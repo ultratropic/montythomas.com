@@ -244,7 +244,7 @@ body {
 
 .project-content {
     margin-top: 50px;
-    max-width: 900px;
+    max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -288,42 +288,30 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    line-height: 1;
+    font-size: 32px;
+    font-weight: 300;
     color: #fff;
     text-decoration: none;
-    z-index: 10;
-    max-width: clamp(80px, 12vw, 160px);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-}
-
-.project-nav-prev {
-    left: clamp(10px, 3vw, 30px);
-}
-
-.project-nav-next {
-    right: clamp(10px, 3vw, 30px);
-    text-align: right;
-    justify-content: flex-end;
-}
-
-.project-nav-arrow {
-    font-size: 20px;
-    flex-shrink: 0;
+    z-index: 10;
     transition: transform 0.3s ease;
 }
 
-.project-nav-prev:hover .project-nav-arrow {
-    transform: translateX(-6px);
+.project-nav-prev {
+    left: clamp(8px, 2vw, 20px);
 }
 
-.project-nav-next:hover .project-nav-arrow {
-    transform: translateX(6px);
+.project-nav-next {
+    right: clamp(8px, 2vw, 20px);
+}
+
+.project-nav-prev:hover {
+    transform: translateY(-50%) translateX(-4px);
+}
+
+.project-nav-next:hover {
+    transform: translateY(-50%) translateX(4px);
 }
 
 /* Responsive Design */
@@ -333,29 +321,20 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    .project-nav-label {
-        display: none;
-    }
-
-    .project-nav-arrow {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        background-color: rgba(255, 255, 255, 0.85);
-        border-radius: 50%;
+/* On wide viewports there's room to move nav arrows outside the video frame */
+@media (min-width: 1300px) {
+    .project-nav {
+        position: fixed;
         color: #000;
         text-shadow: none;
     }
 
     .project-nav-prev {
-        left: 12px;
+        left: clamp(8px, 3vw, 50px);
     }
 
     .project-nav-next {
-        right: 12px;
+        right: clamp(8px, 3vw, 50px);
     }
 }
 
