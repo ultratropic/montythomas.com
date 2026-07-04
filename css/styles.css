@@ -242,12 +242,14 @@ body {
     padding: 0 clamp(20px, 5vw, 80px) 40px;
 }
 
+.project-inner {
+    width: fit-content;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
 .project-content {
     margin-top: 50px;
-    max-width: 1500px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .project-video {
