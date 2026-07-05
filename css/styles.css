@@ -242,7 +242,12 @@ body {
     padding: 0 clamp(20px, 5vw, 80px) 40px;
 }
 
-.page-inner,
+.page-inner {
+    width: 100%;
+    max-width: 2200px;
+    margin: 0 auto;
+}
+
 .project-inner {
     width: 100%;
     max-width: 1000px;
