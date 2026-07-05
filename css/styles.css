@@ -172,9 +172,24 @@ body {
 }
 
 .contact-content {
-    max-width: 700px;
+    max-width: 1000px;
     margin: 50px auto 0 auto;
     text-align: center;
+}
+
+.contact-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    text-align: left;
+}
+
+.contact-photo {
+    width: 320px;
+    flex-shrink: 0;
+    height: auto;
+    display: block;
+    object-fit: cover;
 }
 
 .contact-content h1 {
@@ -412,5 +427,14 @@ body {
 
     .contact-content h2 {
         font-size: 16px;
+    }
+
+    .contact-layout {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .contact-photo {
+        width: 100%;
     }
 }
