@@ -78,4 +78,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (heroVideo) {
         heroVideo.play().catch(() => {});
     }
+
+    // Project page keyboard nav: left/right arrows jump to prev/next project.
+    const navRow = document.querySelector('.project-nav-row');
+    if (navRow) {
+        const prevLink = navRow.querySelector('a:first-child');
+        const nextLink = navRow.querySelector('a:last-child');
+        document.addEventListener('keydown', (e) => {
+            if (e.metaKey || e.ctrlKey || e.altKey) return;
+            if (e.key === 'ArrowLeft' && prevLink) {
+                window.location.href = prevLink.href;
+            } else if (e.key === 'ArrowRight' && nextLink) {
+                window.location.href = nextLink.href;
+            }
+        });
+    }
 });
