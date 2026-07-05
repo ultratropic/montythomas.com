@@ -272,17 +272,20 @@ body {
 }
 
 .project-content {
-    margin-top: 15px;
+    margin-top: 50px;
     display: flex;
     align-items: flex-start;
     gap: 50px;
 }
 
-.project-video {
-    position: relative;
+.project-media {
     flex: 1 1 auto;
     min-width: 0;
-    margin: 0;
+}
+
+.project-video {
+    position: relative;
+    margin: 0 0 15px;
 }
 
 .project-video video {
@@ -326,10 +329,8 @@ body {
 
 .project-nav-row {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    gap: 25px;
-    margin-top: 25px;
 }
 
 .project-nav {
