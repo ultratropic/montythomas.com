@@ -243,7 +243,7 @@ body {
 }
 
 .project-inner {
-    width: fit-content;
+    width: 100%;
     max-width: 1500px;
     margin: 0 auto;
 }
@@ -254,19 +254,30 @@ body {
 
 .project-video {
     position: relative;
-    max-width: 100%;
-    max-height: calc(100vh - 170px);
+    width: 100%;
     margin: 0 0 12px;
 }
 
 .project-video video {
-    max-width: 100%;
-    max-height: calc(100vh - 170px);
-    width: auto;
+    width: 100%;
     height: auto;
     display: block;
     border: none;
     outline: none;
+}
+
+/* Above mobile, use a consistent frame size across every project page
+   (regardless of each video's aspect ratio) by letterboxing within a
+   fixed-height box instead of sizing to the video's natural dimensions. */
+@media (min-width: 769px) {
+    .project-video {
+        height: calc(100vh - 170px);
+    }
+
+    .project-video video {
+        height: 100%;
+        object-fit: contain;
+    }
 }
 
 .project-credits {
