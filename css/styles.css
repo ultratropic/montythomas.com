@@ -256,7 +256,7 @@ body {
     position: relative;
     max-width: 100%;
     max-height: calc(100vh - 170px);
-    margin: 0 0 30px;
+    margin: 0 0 12px;
 }
 
 .project-video video {
@@ -294,59 +294,42 @@ body {
     font-weight: 300;
 }
 
-.project-nav {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
+.project-nav-row {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.project-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     line-height: 1;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 400;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: #fff;
-    mix-blend-mode: difference;
+    color: #999;
     text-decoration: none;
-    z-index: 10;
-    transition: transform 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+.project-nav:hover {
+    color: #000;
 }
 
 .project-nav-arrow {
-    font-size: 32px;
-    font-weight: 300;
+    font-size: 14px;
     line-height: 1;
-}
-
-.project-nav-prev {
-    left: clamp(8px, 2vw, 20px);
-}
-
-.project-nav-next {
-    right: clamp(8px, 2vw, 20px);
-}
-
-.project-nav-prev:hover {
-    transform: translateY(-50%) translateX(-4px);
-}
-
-.project-nav-next:hover {
-    transform: translateY(-50%) translateX(4px);
+    position: relative;
+    top: -1px;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
     .video-grid {
         grid-template-columns: 1fr;
-    }
-}
-
-/* On wide viewports there's room for the video/content to sit closer to the arrows */
-@media (min-width: 1300px) {
-    .project-page {
-        padding-left: 10px;
-        padding-right: 10px;
     }
 }
 

@@ -78,24 +78,4 @@ document.addEventListener('DOMContentLoaded', function() {
     if (heroVideo) {
         heroVideo.play().catch(() => {});
     }
-
-    // Prev/next nav arrows are fixed (so they don't scroll away), but need to
-    // line up with the video's actual vertical center, which varies by aspect
-    // ratio. Measure the rendered video and pin the arrows' fixed top in px.
-    const projectVideoEl = document.querySelector('.project-video');
-    const projectNavEls = document.querySelectorAll('.project-nav');
-    if (projectVideoEl && projectNavEls.length) {
-        const positionProjectNav = () => {
-            const rect = projectVideoEl.getBoundingClientRect();
-            const centerY = rect.top + window.scrollY + rect.height / 2;
-            projectNavEls.forEach((el) => {
-                el.style.top = centerY + 'px';
-            });
-        };
-        positionProjectNav();
-        window.addEventListener('resize', positionProjectNav);
-        if (heroVideo) {
-            heroVideo.addEventListener('loadedmetadata', positionProjectNav, { once: true });
-        }
-    }
 });
