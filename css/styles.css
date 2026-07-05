@@ -267,18 +267,22 @@ body {
 
 .project-inner {
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    max-width: 1500px;
+    margin: 0;
 }
 
 .project-content {
     margin-top: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
 }
 
 .project-video {
     position: relative;
-    width: 100%;
-    margin: 0 0 5px;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
 }
 
 .project-video video {
@@ -287,6 +291,12 @@ body {
     display: block;
     border: none;
     outline: none;
+}
+
+.project-info {
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-credits {
@@ -316,9 +326,10 @@ body {
 
 .project-nav-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    margin-bottom: 15px;
+    gap: 25px;
+    margin-top: 25px;
 }
 
 .project-nav {
@@ -354,6 +365,15 @@ body {
 }
 
 @media (max-width: 768px) {
+    .project-content {
+        flex-direction: column;
+    }
+
+    .project-info {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
     .video-container {
         width: 100vw;
         height: 100vh;
