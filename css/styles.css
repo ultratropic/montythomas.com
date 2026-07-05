@@ -60,7 +60,7 @@ body {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px 20px; /* row-gap column-gap */
     margin-top: 50px;
 }
@@ -172,20 +172,20 @@ body {
 }
 
 .contact-content {
-    max-width: 2200px;
+    max-width: 1400px;
     margin: 50px auto 0 auto;
     text-align: center;
 }
 
 .contact-layout {
     display: flex;
-    align-items: flex-start;
-    gap: 150px;
+    align-items: center;
+    gap: 60px;
     text-align: left;
 }
 
 .contact-photo {
-    width: 960px;
+    width: 864px;
     flex-shrink: 0;
     height: auto;
     display: block;
@@ -213,11 +213,13 @@ body {
 }
 
 .bio p {
-    font-size: 48px;
+    font-size: 20px;
     line-height: 1.8;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     font-weight: 350;
     color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .bio a {
