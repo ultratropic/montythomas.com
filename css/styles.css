@@ -242,26 +242,26 @@ body {
     padding: 0 clamp(20px, 5vw, 80px) 40px;
 }
 
+.page-inner,
 .project-inner {
     width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .project-content {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .project-video {
     position: relative;
     width: 100%;
-    margin: 0 0 12px;
+    margin: 0 0 10px;
 }
 
 .project-video video {
     width: 100%;
     height: auto;
-    max-height: calc(100vh - 220px);
-    object-fit: cover;
     display: block;
     border: none;
     outline: none;
@@ -296,7 +296,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .project-nav {
