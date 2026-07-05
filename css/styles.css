@@ -172,7 +172,7 @@ body {
 }
 
 .contact-content {
-    max-width: 1000px;
+    max-width: 2200px;
     margin: 50px auto 0 auto;
     text-align: center;
 }
@@ -180,12 +180,12 @@ body {
 .contact-layout {
     display: flex;
     align-items: flex-start;
-    gap: 50px;
+    gap: 150px;
     text-align: left;
 }
 
 .contact-photo {
-    width: 320px;
+    width: 960px;
     flex-shrink: 0;
     height: auto;
     display: block;
@@ -213,9 +213,9 @@ body {
 }
 
 .bio p {
-    font-size: 16px;
+    font-size: 48px;
     line-height: 1.8;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
     font-weight: 350;
     color: #333;
 }
