@@ -267,18 +267,18 @@ body {
 
 .project-inner {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 .project-content {
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .project-video {
     position: relative;
     width: 100%;
-    margin: 0 0 10px;
+    margin: 0 0 5px;
 }
 
 .project-video video {
@@ -318,7 +318,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .project-nav {
