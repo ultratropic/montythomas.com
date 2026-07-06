@@ -218,7 +218,7 @@ body {
     margin-bottom: 20px;
     font-weight: 350;
     color: #333;
-    text-transform: uppercase;
+    text-transform: lowercase;
     letter-spacing: 1px;
 }
 
@@ -300,6 +300,20 @@ body {
     flex: 0 0 300px;
     display: flex;
     flex-direction: column;
+}
+
+.project-stills {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.project-stills img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
 }
 
 .project-credits {
