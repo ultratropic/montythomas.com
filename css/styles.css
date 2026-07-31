@@ -193,21 +193,6 @@ body {
     object-fit: cover;
 }
 
-.contact-content h1 {
-    font-size: 48px;
-    font-weight: 300;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-}
-
-.contact-content h2 {
-    font-size: 20px;
-    font-weight: 300;
-    margin-bottom: 40px;
-    letter-spacing: 1px;
-    color: #666;
-}
-
 .bio {
     margin: 0;
     text-align: left;
@@ -269,7 +254,7 @@ body {
 .project-inner {
     width: 100%;
     max-width: 1500px;
-    margin: 0;
+    margin: 0 auto;
 }
 
 .project-content {
@@ -457,14 +442,6 @@ body {
 
     .footer-left h2 {
         font-size: 14px;
-    }
-
-    .contact-content h1 {
-        font-size: 32px;
-    }
-
-    .contact-content h2 {
-        font-size: 16px;
     }
 
     .contact-layout {
