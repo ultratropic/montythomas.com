@@ -111,8 +111,6 @@ body {
     background-color: #fff;
     z-index: 100;
     width: 100%;
-    max-width: 2200px;
-    margin: 0 auto;
     box-sizing: border-box;
     border-bottom: 0.5px solid #000;
 }
@@ -249,7 +247,7 @@ body {
 
 .page-inner {
     width: 100%;
-    max-width: 2200px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 
