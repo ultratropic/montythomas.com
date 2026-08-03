@@ -195,16 +195,17 @@ body {
 
 .bio {
     margin: 0;
-    text-align: left;
+    text-align: right;
+    flex: 1;
 }
 
 .bio p {
-    font-size: 20px;
+    font-size: 12px;
     line-height: 1.8;
     margin-bottom: 20px;
     font-weight: 350;
     color: #333;
-    text-transform: lowercase;
+    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
