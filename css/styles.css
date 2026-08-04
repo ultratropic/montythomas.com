@@ -319,7 +319,7 @@ body {
 .project-stills {
     margin-top: 60px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 4px;
     background-color: #000;
     padding: 4px;
@@ -365,10 +365,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .project-stills {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .video-container {
         width: 100vw;
         height: 100vh;
