@@ -86,11 +86,75 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextLink = navRow.querySelector('a:last-child');
         document.addEventListener('keydown', (e) => {
             if (e.metaKey || e.ctrlKey || e.altKey) return;
+            if (lightboxOpen) return;
             if (e.key === 'ArrowLeft' && prevLink) {
                 window.location.href = prevLink.href;
             } else if (e.key === 'ArrowRight' && nextLink) {
                 window.location.href = nextLink.href;
             }
+        });
+    }
+
+    // Stills lightbox: click a still to enlarge, flip through with
+    // arrows/keyboard, click outside or Escape to close.
+    const stillImages = Array.from(document.querySelectorAll('.project-stills img'));
+    let lightboxOpen = false;
+
+    if (stillImages.length) {
+        let currentIndex = 0;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = `
+            <button class="lightbox-close" aria-label="Close">&times;</button>
+            <button class="lightbox-arrow lightbox-prev" aria-label="Previous still">&lsaquo;</button>
+            <img class="lightbox-img" src="" alt="">
+            <button class="lightbox-arrow lightbox-next" aria-label="Next still">&rsaquo;</button>
+            <div class="lightbox-counter"></div>
+        `;
+        document.body.appendChild(overlay);
+
+        const lightboxImg = overlay.querySelector('.lightbox-img');
+        const counter = overlay.querySelector('.lightbox-counter');
+        const closeBtn = overlay.querySelector('.lightbox-close');
+        const prevBtn = overlay.querySelector('.lightbox-prev');
+        const nextBtn = overlay.querySelector('.lightbox-next');
+
+        const show = (index) => {
+            currentIndex = (index + stillImages.length) % stillImages.length;
+            lightboxImg.src = stillImages[currentIndex].src;
+            lightboxImg.alt = stillImages[currentIndex].alt;
+            counter.textContent = `${currentIndex + 1} / ${stillImages.length}`;
+        };
+
+        const open = (index) => {
+            show(index);
+            overlay.classList.add('active');
+            lightboxOpen = true;
+        };
+
+        const close = () => {
+            overlay.classList.remove('active');
+            lightboxOpen = false;
+        };
+
+        stillImages.forEach((img, index) => {
+            img.addEventListener('click', () => open(index));
+        });
+
+        closeBtn.addEventListener('click', close);
+        prevBtn.addEventListener('click', () => show(currentIndex - 1));
+        nextBtn.addEventListener('click', () => show(currentIndex + 1));
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) close();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightboxOpen) return;
+            if (e.key === 'Escape') close();
+            else if (e.key === 'ArrowLeft') show(currentIndex - 1);
+            else if (e.key === 'ArrowRight') show(currentIndex + 1);
         });
     }
 });
