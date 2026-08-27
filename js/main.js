@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Project page hero video: if autoplay is blocked, keep the poster visible
     // (so the user sees the still rather than nothing).
     const heroVideo = document.querySelector('.project-video video');
-    if (heroVideo) {
+    if (heroVideo && heroVideo.muted) {
         heroVideo.play().catch(() => {});
     }
 
