@@ -66,19 +66,28 @@ body {
 }
 
 .grid-item {
-    position: relative;
     width: 100%;
 }
 
-.grid-item video {
+.grid-media {
+    position: relative;
     width: 100%;
-    height: auto;
     aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.grid-media video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: block;
     object-fit: cover;
     background: #000;
     border: none;
     outline: none;
+    z-index: 1;
 }
 
 .grid-poster {
@@ -87,12 +96,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    aspect-ratio: 16 / 9;
     object-fit: cover;
     display: block;
     pointer-events: none;
     opacity: 1;
     transition: opacity 0.3s ease;
+    z-index: 2;
 }
 
 .grid-item:hover .grid-poster {
