@@ -72,6 +72,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Work/homepage grid: videos start paused on their poster still and only
+    // play on hover, pausing and resetting back to the poster on mouse-leave.
+    document.querySelectorAll('.grid-item').forEach((item) => {
+        const video = item.querySelector('video');
+        if (!video) return;
+        let resetTimer;
+
+        item.addEventListener('mouseenter', () => {
+            clearTimeout(resetTimer);
+            video.play().catch(() => {});
+        });
+
+        item.addEventListener('mouseleave', () => {
+            video.pause();
+            resetTimer = setTimeout(() => {
+                video.currentTime = 0;
+            }, 300);
+        });
+    });
+
     // Project page hero video: if autoplay is blocked, keep the poster visible
     // (so the user sees the still rather than nothing).
     const heroVideo = document.querySelector('.project-video video');
