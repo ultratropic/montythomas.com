@@ -94,10 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Project page hero video: if autoplay is blocked, keep the poster visible
     // (so the user sees the still rather than nothing).
-    const heroVideo = document.querySelector('.project-video video');
-    if (heroVideo && heroVideo.muted) {
-        heroVideo.play().catch(() => {});
-    }
+    document.querySelectorAll('.project-video video').forEach((heroVideo) => {
+        if (heroVideo.muted) {
+            heroVideo.play().catch(() => {});
+        }
+    });
 
     // Project page keyboard nav: left/right arrows jump to prev/next project.
     const navRow = document.querySelector('.project-nav-row');
