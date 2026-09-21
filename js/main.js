@@ -72,6 +72,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Grid titles sit over the thumbnail, so pick black or white type per tile
+    // by measuring the brightness of the poster region right behind the title.
+    document.querySelectorAll('.grid-item .grid-poster').forEach((poster) => {
+        const item = poster.closest('.grid-item');
+        if (!item) return;
+
+        const pickTitleColor = () => {
+            if (!poster.naturalWidth) return;
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = 48;
+                canvas.height = 12;
+                const ctx = canvas.getContext('2d', { willReadFrequently: true });
+                // Bottom-left corner of the poster, where the title is drawn.
+                const sx = 0;
+                const sy = Math.floor(poster.naturalHeight * 0.78);
+                const sw = Math.max(1, Math.floor(poster.naturalWidth * 0.6));
+                const sh = Math.max(1, poster.naturalHeight - sy);
+                ctx.drawImage(poster, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+
+                const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                let total = 0;
+                for (let i = 0; i < data.length; i += 4) {
+                    // Rec. 709 luma
+                    total += 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
+                }
+                const avg = total / (data.length / 4);
+                item.classList.toggle('title-dark', avg > 140);
+            } catch (e) {
+                // Canvas unavailable or tainted — keep the default white type.
+            }
+        };
+
+        if (poster.complete) pickTitleColor();
+        else poster.addEventListener('load', pickTitleColor, { once: true });
+    });
+
     // Work/homepage grid: videos start paused on their poster still and only
     // play on hover, pausing and resetting back to the poster on mouse-leave.
     document.querySelectorAll('.grid-item').forEach((item) => {

@@ -61,7 +61,7 @@ body {
 .video-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px 20px; /* row-gap column-gap */
+    gap: 14px; /* even gutters now that titles sit over the thumbnails */
     margin-top: 50px;
 }
 
@@ -119,13 +119,27 @@ body {
 }
 
 .project-title {
+    position: absolute;
+    left: 14px;
+    bottom: 12px;
+    right: 14px;
+    z-index: 3;
+    margin: 0;
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 1px;
     text-transform: none;
-    margin-top: 10px;
-    color: #000;
-    transition: opacity 0.3s ease;
+    pointer-events: none;
+    /* Default to light type; .title-dark flips it for bright thumbnails.
+       main.js samples the poster behind the title and sets the class. */
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+    transition: opacity 0.3s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.grid-item.title-dark .project-title {
+    color: #111;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
 }
 
 /* Header Styles */
