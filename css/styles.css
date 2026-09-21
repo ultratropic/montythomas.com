@@ -115,7 +115,7 @@ body {
 }
 
 .project-link:hover .project-title {
-    opacity: 0.6;
+    opacity: 1;
 }
 
 .project-title {
@@ -133,13 +133,14 @@ body {
     /* Default to light type; .title-dark flips it for bright thumbnails.
        main.js samples the poster behind the title and sets the class. */
     color: #fff;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+    opacity: 0.75;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
     transition: opacity 0.3s ease, color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .grid-item.title-dark .project-title {
     color: #111;
-    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.4);
 }
 
 /* Header Styles */
