@@ -85,10 +85,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 canvas.width = 48;
                 canvas.height = 12;
                 const ctx = canvas.getContext('2d', { willReadFrequently: true });
-                // Bottom-left corner of the poster, where the title is drawn.
-                const sx = 0;
-                const sy = Math.floor(poster.naturalHeight * 0.78);
+                // Bottom-right corner of the poster, where the title is drawn.
                 const sw = Math.max(1, Math.floor(poster.naturalWidth * 0.6));
+                const sx = poster.naturalWidth - sw;
+                const sy = Math.floor(poster.naturalHeight * 0.78);
                 const sh = Math.max(1, poster.naturalHeight - sy);
                 ctx.drawImage(poster, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
 

@@ -128,7 +128,8 @@ body {
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 1px;
-    text-transform: none;
+    text-transform: uppercase;
+    text-align: right;
     pointer-events: none;
     /* Default to light type; .title-dark flips it for bright thumbnails.
        main.js samples the poster behind the title and sets the class. */
