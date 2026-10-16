@@ -20,16 +20,17 @@ body {
     cursor: pointer;
 }
 
+/* The reel always fills the screen (no bars). Screens narrower than 16:9
+   (most laptops, phones, tablets) lose a little off the sides; only very
+   wide, short windows lose a sliver off the top and bottom, split evenly. */
 .video-container video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    background: #000;
     border: none;
     outline: none;
 }
