@@ -6,15 +6,26 @@ document.addEventListener('DOMContentLoaded', function() {
         homeVideo.addEventListener('click', function() {
             window.location.href = 'work.html';
         });
+        homeVideo.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.location.href = 'work.html';
+            }
+        });
 
         // Force-play the splash video on devices where autoplay needs a nudge
         // (Safari with Auto-Play "Never" / Low Power Mode / Save Data, etc.).
-        // If play() rejects, hide the video element so the body's poster
-        // background shows through instead of a blank black box.
+        // If play() rejects and the video still isn't running, hide the element
+        // so the body's poster background shows through instead of a blank
+        // black box. An early play() can reject just because a later call or
+        // the initial load interrupted it, so re-check and unhide on 'playing'.
         const video = homeVideo.querySelector('video');
         if (video) {
             const attemptPlay = () => video.play().catch(() => {
-                video.style.display = 'none';
+                if (video.paused) video.style.display = 'none';
+            });
+            video.addEventListener('playing', () => {
+                video.style.display = '';
             });
             // Try immediately; if metadata isn't ready yet, retry once it is.
             attemptPlay();
@@ -111,9 +122,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Work/homepage grid: videos start paused on their poster still and only
     // play on hover, pausing and resetting back to the poster on mouse-leave.
+    const canHover = window.matchMedia('(hover: hover)').matches;
     document.querySelectorAll('.grid-item').forEach((item) => {
         const video = item.querySelector('video');
-        if (!video) return;
+        if (!video || !canHover) return;
         let resetTimer;
 
         item.addEventListener('mouseenter', () => {

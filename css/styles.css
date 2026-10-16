@@ -104,8 +104,12 @@ body {
     z-index: 2;
 }
 
-.grid-item:hover .grid-poster {
-    opacity: 0;
+/* Hover effects only on devices with a real pointer; on touchscreens a tap
+   should go straight to the project instead of flashing the hover state. */
+@media (hover: hover) {
+    .grid-item:hover .grid-poster {
+        opacity: 0;
+    }
 }
 
 .project-link {
@@ -114,8 +118,10 @@ body {
     cursor: pointer;
 }
 
-.project-link:hover .project-title {
-    opacity: 1;
+@media (hover: hover) {
+    .project-link:hover .project-title {
+        opacity: 1;
+    }
 }
 
 .project-title {
