@@ -33,6 +33,14 @@ body {
     background: #000;
     border: none;
     outline: none;
+    /* Hidden until playback starts (main.js adds .is-playing), so a browser
+       that blocks autoplay never flashes its play button. */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.video-container.is-playing video {
+    opacity: 1;
 }
 
 .overlay {

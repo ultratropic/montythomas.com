@@ -13,26 +13,38 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Force-play the splash video on devices where autoplay needs a nudge
-        // (Safari with Auto-Play "Never" / Low Power Mode / Save Data, etc.).
-        // If play() rejects and the video still isn't running, hide the element
-        // so the body's poster background shows through instead of a blank
-        // black box. An early play() can reject just because a later call or
-        // the initial load interrupted it, so re-check and unhide on 'playing'.
+        // The splash only works if the reel autoplays. Browsers that block it
+        // (Low Power Mode on Mac/iPhone, Safari "Never Auto-Play", data saver)
+        // would otherwise show a frozen frame with a play button, so in that
+        // case skip straight to the grid. The video stays invisible (body shows
+        // the poster) until it's actually playing.
         const video = homeVideo.querySelector('video');
         if (video) {
-            const attemptPlay = () => video.play().catch(() => {
-                if (video.paused) video.style.display = 'none';
-            });
+            let entered = false;
+            const skipToGrid = () => {
+                if (entered || !video.paused) return;
+                entered = true;
+                window.location.replace('work.html');
+            };
+
             video.addEventListener('playing', () => {
-                video.style.display = '';
+                homeVideo.classList.add('is-playing');
             });
-            // Try immediately; if metadata isn't ready yet, retry once it is.
-            attemptPlay();
-            video.addEventListener('loadedmetadata', attemptPlay, { once: true });
-            // Last resort: any user interaction on the page resumes playback.
-            document.addEventListener('touchstart', attemptPlay, { once: true, passive: true });
-            document.addEventListener('click', attemptPlay, { once: true });
+
+            const p = video.play();
+            if (p && p.catch) {
+                p.catch((err) => {
+                    // AbortError just means a load interrupted this call; only
+                    // NotAllowedError means autoplay is actually blocked.
+                    if (err && err.name === 'NotAllowedError') skipToGrid();
+                });
+            }
+
+            // Some browsers block without rejecting. Once there's enough data
+            // to play, give it a moment; if it still hasn't started, bail.
+            const checkSoon = () => setTimeout(skipToGrid, 1200);
+            if (video.readyState >= 3) checkSoon();
+            else video.addEventListener('canplay', checkSoon, { once: true });
         }
     }
 
