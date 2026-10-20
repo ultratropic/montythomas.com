@@ -7,19 +7,26 @@
     <meta name="description" content="Monty Thomas — Director of Photography, Editor, and Colorist. Portfolio of fashion, music, and brand work.">
     <meta property="og:title" content="Monty Thomas | DP, Editor, Colorist">
     <meta property="og:description" content="Portfolio of fashion, music, and brand work.">
-    <meta property="og:image" content="https://montythomas.com/videos/reel-poster.jpg">
+    <meta property="og:image" content="https://montythomas.com/videos/splash-16x9-poster.jpg">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://montythomas.com/">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='Helvetica' font-weight='300'%3EM%3C/text%3E%3C/svg%3E">
-    <link rel="preload" as="image" href="videos/reel-poster.jpg">
+    <link rel="preload" as="image" href="videos/splash-16x9-poster.jpg" media="(orientation: landscape)">
+    <link rel="preload" as="image" href="videos/splash-9x16-poster.jpg" media="(orientation: portrait)">
     <link rel="stylesheet" href="css/styles.css?v=4cdaac1b">
-    <style>body{background:#000 url(videos/reel-poster.jpg) center center / cover no-repeat fixed}</style>
+    <style>
+        body{background:#000 url(videos/splash-16x9-poster.jpg) center center / cover no-repeat fixed}
+        @media (orientation: portrait){body{background-image:url(videos/splash-9x16-poster.jpg)}}
+    </style>
 </head>
 <body>
     <div class="video-container" id="homeVideo" role="link" tabindex="0" aria-label="Enter site">
-        <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="videos/reel-poster.jpg">
-            <source src="videos/reel.mp4" type="video/mp4">
+        <!-- Vertical cut for portrait screens (phones, upright tablets), 16:9 otherwise.
+             The browser picks the first matching source when the page loads. -->
+        <video autoplay muted loop playsinline webkit-playsinline preload="auto">
+            <source src="videos/splash-9x16.mp4" type="video/mp4" media="(orientation: portrait)">
+            <source src="videos/splash-16x9.mp4" type="video/mp4">
         </video>
         <div class="overlay">
             <h1>Monty Thomas | DP Editor Colorist</h1>
